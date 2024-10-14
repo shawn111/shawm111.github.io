@@ -33,3 +33,7 @@ But Hugo and Zola still have some small advantages:
 1. Github Action - withastro/action https://github.com/withastro/action.git
 2. astro-paper - astro theme https://github.com/satnaing/astro-paper.git
 3. astro-paper with Giscus comments - https://astro-paper.pages.dev/posts/how-to-integrate-giscus-comments/
+
+## Next Plan
+
+migrate kalug.github.io to Astro.js
