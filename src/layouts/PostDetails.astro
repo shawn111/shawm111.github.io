@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Tag from "@components/Tag.astro";
+import Comments from "@components/Comments";
 import Datetime from "@components/Datetime";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
@@ -177,6 +178,22 @@ const nextPost =
         )
       }
     </div>
+    <script is:inline src="https://giscus.app/client.js"
+        data-repo="shawn111/shawn111.github.io"
+        data-repo-id="R_kgDOLUliVA"
+        data-category="Ideas"
+        data-category-id="DIC_kwDOLUliVM4CjVJi"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+    <Comments client:only="react" />
   </main>
   <Footer />
 </Layout>

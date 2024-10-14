@@ -1,4 +1,27 @@
 import type { Site, SocialObjects } from "./types";
+import type { GiscusProps } from "@giscus/react";
+
+// GiscusProps
+//
+// https://astro-paper.pages.dev/posts/how-to-integrate-giscus-comments/
+// https://giscus.app/
+
+
+export const GISCUS: GiscusProps = {
+  repo: "shawn111/shawn111.github.io",
+  repoId: "R_kgDOLUliVA",
+  category: "Ideas",
+  categoryId: "DIC_kwDOLUliVM4CjVJi",
+  mapping: "pathname",
+  reactionsEnabled: "0",
+  emitMetadata: "0",
+  inputPosition: "bottom",
+  lang: "en",
+  loading: "lazy",
+};
+
+
+// SITE
 
 export const SITE: Site = {
   website: "https://shawn111.github.io/", // replace this with your deployed domain
