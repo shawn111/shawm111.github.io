@@ -1,0 +1,35 @@
+---
+author: Shawn Wang
+pubDatetime: 2024-10-14
+modDatetime: 2024-10-14
+title: mdx testing
+slug: sandbox-mdx
+featured: true
+draft: false
+tags:
+  - astro
+  - mdx
+description:
+  My first astro mdx file with blockquate example
+---
+
+import Blockquote from '../../components/Blockquote.astro';
+export const components = {blockquote: Blockquote}
+export const year = 2023
+
+import txtReference from 'words.txt';
+export const x = txtReference
+
+
+# {frontmatter.title}
+
+[import other assets](https://docs.astro.build/en/guides/imports/#other-assets)
+
+
+- {txtReference}
+
+*year as const, {year}.*
+
+## Blockquote
+
+<Blockquote> dsadsa </Blockquote>
