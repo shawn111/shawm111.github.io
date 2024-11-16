@@ -1,7 +1,7 @@
 ---
 author: Shawn Wang
 pubDatetime: 2024-10-14
-modDatetime: 2024-10-14
+modDatetime: 2024-10-15
 title: bootable container
 slug: bootc
 featured: true
@@ -93,4 +93,32 @@ INDEX_FN=$BASEDIR/../overlay-images/images.json
 LAYER=$(cat ${INDEX_FN} | jq -r '.[] | select( .names |  any( "$TAG" ) )  | .layer')
 
 mount -t composefs ${BASEDIR}/${LAYER}/composefs-data/composefs.blob -o basedir=${BASEDIR} $MNT
+```
+
+
+```
+$ podman pull quay.io/centos-bootc/centos-bootc:stream9
+$ podman image save quay.io/centos-bootc/centos-bootc:stream9 -o stream9.tar #(oci)
+
+# podman image mount  quay.io/centos-bootc/centos-bootc:stream9
+/var/lib/containers/storage/overlay/98cf94224120f2355d5efc4df25632f6789c3b251f52cc0893562f959d72a7f6/merged
+# mkcomposefs /var/lib/containers/storage/overlay/98cf94224120f2355d5efc4df25632f6789c3b251f52cc0893562f959d72a7f6/merged --digest-store=/sysroot/composefs/repo /sysroot/composefs/images/bootc-cs9.cfs
+
+# mount -o rw,remount /sysroot/
+# initrd
+#mount --bind /sysroot /sysroot.tmp
+
+Containerfile `ln -s sysroot/composefs composefs`
+
+
+mkdir /sysroot.tmp
+mount /dev/vda3 /sysroot.tmp
+
+mount -t composefs /sysroot.tmp/composefs/images/bootc-cs9.cfs -o basedir=/sysroot/composefs/repo /sysroot
+
+mount --bind /sysroot.tmp/ostree/deploy/default/deploy/37595a2f96fc23131eef6af87920858e6eecc4de5540ef3278aa7e184c7d4d5c.0/etc /sysroot/etc
+mount --bind /sysroot.tmp/ostree/deploy/default/var /sysroot/var
+
+modprobe zram
+modprobe xfs
 ```
